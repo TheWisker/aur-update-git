@@ -43,7 +43,7 @@ runs:
       env:
         aur_key: ${{ inputs.aur_key }}
         aur_public_key: ${{ inputs.aur_public_key }}
-      run: ${{ github.action_path }}/scripts/setup.sh
+      run: scripts/setup.sh
       shell: bash
     - name: Configure Git Credentials
       if: ${{ github.event_name == 'push' }}
@@ -51,7 +51,7 @@ runs:
         username: ${{ inputs.username }}
         email: ${{ inputs.email }}
         repo_name: ${{ inputs.repo_name }}
-      run: ${{ github.action_path }}/scripts/git_config.sh
+      run: scripts/git_config.sh
       shell: bash
     - name: Checkout
       if: ${{ github.event_name == 'push' }}
@@ -62,22 +62,22 @@ runs:
       if: ${{ github.event_name == 'push' }}
       env:
         aur_folder: ${{ inputs.aur_folder }}
-      run: ${{ github.action_path }}/scripts/aur_pull.sh
+      run: scripts/aur_pull.sh
       shell: bash
     - name: Update PKGBUILDs and .SRCINFOs
       if: ${{ github.event_name == 'push' }}
       env:
         aur_folder: ${{ inputs.aur_folder }}
-      run: ${{ github.action_path }}/scripts/aur_update.sh
+      run: scripts/aur_update.sh
       shell: bash
     - name: Push to AUR        
       if: ${{ github.event_name == 'push' }}
       env:
         aur_folder: ${{ inputs.aur_folder }}
         commit_hash: ${{ inputs.commit_hash }}
-      run: ${{ github.action_path }}/scripts/aur_push.sh
+      run: scripts/aur_push.sh
       shell: bash
     - name: Push to ${{ inputs.repo_name }} repository
       if: ${{ github.event_name == 'push' }}
-      run: ${{ github.action_path }}/scripts/repo_push.sh
+      run: scripts/repo_push.sh
       shell: bash
