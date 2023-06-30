@@ -40,7 +40,13 @@ runs:
   steps:
     - name: Setup Action Path
       if: ${{ github.event_name == 'push' }}
-      run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      run: |
+        echo "${{ github.action_path }}" >> $GITHUB_PATH
+        ls -a .
+        echo "-"
+        ls -a ..
+        echo "-"
+        ls -a ../..
       shell: bash
     - name: Setup Runtime
       if: ${{ github.event_name == 'push' }}
