@@ -38,6 +38,8 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Setup Action Path
+      run: echo "${{ github.action_path }}" >> $GITHUB_PATH
     - name: Setup Runtime
       if: ${{ github.event_name == 'push' }}
       env:
