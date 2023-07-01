@@ -30,7 +30,7 @@ body:
       label: Action Version
       description: What version of our software are you running?
       options:
-        - v1.0.0
+        - v1
     validations:
       required: true
   - type: textarea

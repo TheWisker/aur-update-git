@@ -35,7 +35,7 @@
 To use this **GitHub Action** you need to already have **initialized** the **AUR repository** and **uploaded** a first **version**.
 The **pkgbase** must end in `-git` for this action to work and to *differentiate* it from the *release* action which you can maintain with this action's twin [AUR Update][twin].
 
-Once that has been taken care of, you need to create a **folder** in your GitHub **repository** were the AUR **packages** will be **stored** and **updated** (by default /aur). Inside said folder, you must **creat** a **folder** named exactly as the **pkgbase** for each package you intend to maintain. Then, *optionally*, **fill** each package's folder with it's AUR **content** (PKGBUILD .SRCINFO ...).
+Once that has been taken care of, you need to create a **folder** in your GitHub **repository** were the AUR **packages** will be **stored** and **updated** (by default /aur). Inside said folder, you must **create** a **folder** named exactly as the **pkgbase** for each package you intend to maintain. Then, *optionally*, **fill** each package's folder with it's AUR **content** (PKGBUILD .SRCINFO ...).
 
 After all this preparations have been done it is only left to **create** the **workflow** `.yml` file under `.github/workflows/`.
 

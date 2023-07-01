@@ -3,6 +3,6 @@ message: "If you use this software in your work, or make a fork of it, please ci
 authors:
 - given-names: "TheWisker"
 title: "AUR Update Git Action"
-version: 1.0.0
+version: 1
 date-released: 2023-07-01
 url: "https://github.com/TheWisker/aur-update-git"

@@ -5,6 +5,7 @@
     </a>
 </div>
 <p align="center">Updates AUR git packages on push</p>
+
 <h2 align="center">Support</h2>
 
 This page explains where and how to get help with **AUR Update Git**.
