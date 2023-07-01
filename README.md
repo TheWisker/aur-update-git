@@ -1,7 +1,7 @@
 <h1 align="center">AUR Update Git</h1>
 <div align="center">
     <a href="https://github.com/TheWisker/aur-update-git">
-        <img width="400" src="./assets/logo.svg">
+        <img width="350" src="./assets/logo.svg">
     </a>
 </div>
 <p align="center">Updates AUR git packages on push</p>
@@ -43,30 +43,30 @@ The `.yml` file needs certain **fields** to have specific **values** to work. Th
 
 <h4 align="left"><b>Permissions</b> to <b>write</b> to the repo</h4>
 
-'''yml
+```yaml
 permissions:
   contents: write
-'''
+```
 
 <h4 align="left"><b>Run</b> the job on a <b>priviledged Arch</b> container</h4>
 
 On the job element:
 
-'''yml
+```yaml
 runs-on: ubuntu-latest 
 container:
   image: archlinux
   options: --privileged
-'''
+```
 
 <h4 align="left">Run on <b>push</b></h4>
 
-'''yml
+```yaml
 on:
   push:
     branches:
       - 'master'
-'''
+```
 
 **Not** really **needed** but it is **intented** to work on push
 
@@ -76,18 +76,18 @@ on:
 | ------ | ------- | -------- | ----------- |
 | **aur_key** | no default | true | AUR **ssh** private **key** |
 | **ref** | 'master' | false | Checkout **reference** |
-| **username** | ${{ github.actor || 'github-actions-bot'}} | false | Git **username** to use |
-| **email** | github-actions-bot@noreply.com | false | Git **email** to use |
+| **username** | ${{ github.actor \|\| 'github-actions-bot'}} | false | Git **username** to use |
+| **email** | 'github-actions-bot@noreply.com' | false | Git **email** to use |
 | **repo** | ${{ github.repository }} | false | **Repository**: user/repo_name |
 | **repo_name** | ${{ github.event.repository.name }} | false | Repository **name** |
-| **aur_folder** | "./aur" | false | AUR files **folder** |
-| **commit_hash** | ${{ github.event.push.after || 'no-hash' }} | false | Commit **hash** for commit messages |
+| **aur_folder** | ./aur | false | AUR files **folder** |
+| **commit_hash** | ${{ github.event.push.after \|\| 'no-hash' }} | false | Commit **hash** for commit messages |
 
 <h3 align="center">Examples</h3>
 
 <h4 align="left">Basic</h4>
 
-'''yml
+```yaml
 name: AUR Update Git
 on:
   push:
@@ -106,13 +106,13 @@ jobs:
         uses: TheWisker/aur-update-git@master
         with:
           aur_key: ${{ secrets.AUR_KEY }}
-'''
+```
 
 The most **basic** workflow file
 
 <h4 align="left">Advanced</h4>
 
-'''yml
+```yaml
 name: AUR Update Git
 run-name: AUR package update by ${{ github.actor }} push
 on:
@@ -139,7 +139,7 @@ jobs:
           aur_key: ${{ secrets.AUR_KEY }}
           username: TheWisker
           email: TheWisker@protonmail.com
-'''
+```
 
 Specifies a **concurrency** group so if it is called multiple times at once it is **serialized**. It also specifies an **environment** to deploy to so you can, for example, add a **delay** to said environment so you can cancel the AUR **update** if there has been a mistake commit. The environment can also be used to only **allow access** to the AUR_KEY **secret** to it to minimize **security** risks.
 
