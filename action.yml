@@ -41,8 +41,7 @@ runs:
     - name: Setup Action Path
       if: ${{ github.event_name == 'push' }}
       run: |
-        echo "${{ github.action_path }}" >> $GITHUB_PATH
-        find / -type d -name "scripts"
+        echo "/__w/_actions/TheWisker/aur-update-git/master/scripts" >> $GITHUB_PATH
       shell: bash
     - name: Setup Runtime
       if: ${{ github.event_name == 'push' }}
