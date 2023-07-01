@@ -14,7 +14,7 @@ inputs:
   ref:
     description: "Checkout reference"
     required: false
-    default: ${{ github.sha || 'master' }}
+    default: 'master'
   username:
     description: "Git username to use"
     required: false
