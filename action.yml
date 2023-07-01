@@ -38,17 +38,12 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Setup Action Path
-      if: ${{ github.event_name == 'push' }}
-      run: |
-        echo "/__w/_actions/TheWisker/aur-update-git/master/scripts" >> $GITHUB_PATH
-      shell: bash
     - name: Setup Runtime
       if: ${{ github.event_name == 'push' }}
       env:
         aur_key: ${{ inputs.aur_key }}
         aur_public_key: ${{ inputs.aur_public_key }}
-      run: scripts/setup.sh
+      run: /__w/_actions/TheWisker/aur-update-git/master/scripts/setup.sh
       shell: bash
     - name: Configure Git Credentials
       if: ${{ github.event_name == 'push' }}
@@ -56,7 +51,7 @@ runs:
         username: ${{ inputs.username }}
         email: ${{ inputs.email }}
         repo_name: ${{ inputs.repo_name }}
-      run: scripts/git_config.sh
+      run: /__w/_actions/TheWisker/aur-update-git/master/scripts/git_config.sh
       shell: bash
     - name: Checkout
       if: ${{ github.event_name == 'push' }}
@@ -67,22 +62,22 @@ runs:
       if: ${{ github.event_name == 'push' }}
       env:
         aur_folder: ${{ inputs.aur_folder }}
-      run: scripts/aur_pull.sh
+      run: /__w/_actions/TheWisker/aur-update-git/master/scripts/aur_pull.sh
       shell: bash
     - name: Update PKGBUILDs and .SRCINFOs
       if: ${{ github.event_name == 'push' }}
       env:
         aur_folder: ${{ inputs.aur_folder }}
-      run: scripts/aur_update.sh
+      run: /__w/_actions/TheWisker/aur-update-git/master/scripts/aur_update.sh
       shell: bash
     - name: Push to AUR        
       if: ${{ github.event_name == 'push' }}
       env:
         aur_folder: ${{ inputs.aur_folder }}
         commit_hash: ${{ inputs.commit_hash }}
-      run: scripts/aur_push.sh
+      run: /__w/_actions/TheWisker/aur-update-git/master/scripts/aur_push.sh
       shell: bash
     - name: Push to ${{ inputs.repo_name }} repository
       if: ${{ github.event_name == 'push' }}
-      run: scripts/repo_push.sh
+      run: /__w/_actions/TheWisker/aur-update-git/master/scripts/repo_push.sh
       shell: bash
